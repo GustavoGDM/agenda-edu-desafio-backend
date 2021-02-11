@@ -96,9 +96,18 @@
         align-self: flex-end;
       }
     }
-    .latest-cont{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+    .latest{
+      &-cont{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      &-title{
+        border-left: 1px solid var(--white);
+        margin-top: 17px;
+        h2{
+          padding: 0 10px 
+        }
+      }
     }
   }
 
