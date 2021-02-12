@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2021_02_12_003924) do
 
   create_table "parliamentarians", force: :cascade do |t|
-    t.string "name"
+    t.string "txNomeParlamentar"
     t.string "cpf"
     t.integer "ideCadastro"
     t.string "sgPartido"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2021_02_12_003924) do
     t.string "txtFornecedor"
     t.float "vlrLiquido"
     t.integer "parliamentarian_id", null: false
+    t.integer "ideDocumento"
+    t.string "urlDocumento"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["parliamentarian_id"], name: "index_parliamentary_expenditures_on_parliamentarian_id"

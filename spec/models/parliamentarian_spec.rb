@@ -6,10 +6,10 @@ RSpec.describe Parliamentarian, type: :model do
     expect(parliamentarian).to be_valid
   end
 
-  it "is invalid without name" do
-    parliamentarian = build(:parliamentarian, name: nil)
+  it "is invalid without txNomeParlamentar" do
+    parliamentarian = build(:parliamentarian, txNomeParlamentar: nil)
     parliamentarian.valid?
-    expect(parliamentarian.errors[:name]).to include("can't be blank")
+    expect(parliamentarian.errors[:txNomeParlamentar]).to include("can't be blank")
   end
 
   it "is invalid without cpf" do
