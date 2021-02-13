@@ -1,0 +1,41 @@
+<div id="parliamentarians-list" class='main'>
+  <div class='list-info'>
+  <h2>Ranking dos gastos dos Deputados</h2>
+  <span>
+    Os Deputados foram listados segundo a ordem dos seus gastos 
+  </span>
+  </div>
+  <div class="cards" >
+    <% @parliamentarians.each do |p, value| %>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-img">
+            <div class="card-img-parliam">
+              <%= image_tag("http://www.camara.leg.br/internet/deputado/bandep/#{p.ideCadastro}.jpg") %>
+            </div>
+            <div class="card-img-<%= p.sgPartido%>"></div>
+          </div>
+          <div class="card-info">
+            <div class='card-info-name'>
+              <span>
+                <%= p.txNomeParlamentar %>
+              </span>
+            </div>
+            <div class='card-info-spent'>
+              <span>
+                Total Gasto
+              </span>
+              <span class='card-info-spent-value' >
+                R$ 
+                <%= number_with_delimiter('%.2f' % value) %>
+              </span>
+            </div>
+            <div class='bnt-card'>
+              Lista dos gastos
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

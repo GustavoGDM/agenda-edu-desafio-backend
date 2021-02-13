@@ -31,10 +31,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'factory_bot'
+  gem 'pry', '~> 0.13.1'
+  gem 'factory_bot_rails'
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
   gem 'rspec-rails'
-  gem 'pry', '~> 0.13.1'
 end
 
 group :development do

@@ -4,27 +4,33 @@
     <div class="welc-text">
       <h2>Bem vindo ao analisador de gastos</h2>
       <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sodales hendrerit ex non semper. Sed at lobortis nibh, ut auctor diam. Fusce finibus, dui sed rhoncus efficitur, ligula erat efficitur nibh, a pulvinar dui tellus at tellus. </span>
-      <div class="welc-btn-upload" id="file-btn-upload">
+      <div class="welc-btn-upload btn" id="file-btn-upload">
         <span>Upload de arquivo</span> 
         <i class="fas fa-plus"></i>
       </div>
-      <%= form_with url: upload_file_create_path, class:'d-none', id:'form-file', method: :post do |f| %>
+      <%= form_with url: upload_files_path, class:'d-none', id:'form-file', method: :post do |f| %>
         <%= f.file_field :file %>
       <% end %>
     </div>
   </div>
   <div class="latest-cont">
     <div class="cards" >
-      <% 5.times do  %>
-        <div class="card">
-          <div class="card-body">
-            <i class="fas fa-file-csv"></i>
-            <div class="card-info">
-              <span class='card-info-title'>Nome Do Arquivo</span>
-              <span>00:00 00/00/00</span>
+      <% @files.each do |file| %>
+        <%= link_to file do %>
+          <div class="card">
+            <div class="card-body">
+              <i class="fas fa-file-csv"></i>
+              <div class="card-info">
+                <span class='card-info-title'>
+                  <%= file.name %>
+                </span>
+                <span>
+                  <%= file.created_at.strftime('%H:%M %d/%m/%Y') %>
+                </span>
+              </div>
             </div>
           </div>
-        </div>
+        <%end%>
       <%end%>
     </div>
     <div class="latest-title">
@@ -44,10 +50,22 @@
         </button>
       </div>
       <div class="modal-body">
-        Tente anexar um arquivo .CSV válido
+        <% if flash[:error].present? %>
+          <span>
+            <%= flash[:error] %>
+          </span>
+        <% end %>
+        <span>
+          Tente anexar um arquivo .CSV válido
+        </span>
       </div>
     </div>
   </div>
 </div>
 
 <%= javascript_pack_tag 'home' %>
+<%if flash[:error].present? %>
+  <script>
+    $('#file-exception').modal('show')
+  </script>
+<% end %>

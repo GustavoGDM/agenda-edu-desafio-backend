@@ -3,16 +3,17 @@ require 'rails_helper'
 RSpec.describe 'UploadFiles', type: :request do
 
   describe 'Post /create' do
-    # it 'returns http success' do
-    #   file = Tempfile.new(['file', '.csv'])
-    #   file.write("id,name\n2,John Doe\n5,John Doe")
-    #   post '/upload_file/create', params: { file: fixture_file_upload(file, 'text/csv') }
-    #   expect(response).to have_http_status(:success)
-    # end
+    it 'returns :found request without file' do
+      post '/upload_files'
+      expect(response).to have_http_status(:found)
+    end
+  end
 
-    it 'returns http bad request' do
-      post '/upload_file/create'
-      expect(response).to have_http_status(:no_content)
+  describe 'Get /show/:id' do
+    it 'returns http success' do
+      upload_file = create(:upload_file)
+      get "/upload_files/#{upload_file.id}"
+      expect(response).to have_http_status(:ok)
     end
   end
 
