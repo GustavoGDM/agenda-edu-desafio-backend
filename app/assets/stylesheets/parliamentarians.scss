@@ -1,13 +1,18 @@
 $political-parties: "PT", "DEM", "PCdoB", "PSOL", "PL", "PDT", "PSD", "PSB", "SOLIDARIEDADE", "PROS", "REPUBLICANOS", "PSL", "CIDADANIA", "PP", "PSC", "MDB", "NOVO", "AVANTE";
 
 #parliamentarians-list {
+  padding: 20px;
+  .list-info{
+    border-bottom: 1px solid #C0C0C0;
+    padding-bottom: 10px;
+  }
   .cards{
     display: grid;
     grid-template-columns: 1fr 1fr ;
     gap: 20px;
-    padding: 20px;
   }
   .card{
+    margin-top: 10px;
     background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
     box-shadow: var(--shadow);
     border: none;
@@ -32,6 +37,17 @@ $political-parties: "PT", "DEM", "PCdoB", "PSOL", "PL", "PDT", "PSD", "PSB", "SO
           font-size: 18px;
         }
       }
+    }
+    .bnt-card{
+      margin-top: 10px;
+      text-align: center;
+      background-color: var(--orange);
+      padding: 5px;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      color: var(--white);
+      font-weight: 500;
     }
   }
 
