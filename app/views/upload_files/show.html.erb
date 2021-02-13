@@ -30,9 +30,11 @@
                 <%= number_with_delimiter('%.2f' % value) %>
               </span>
             </div>
-            <div class='bnt-card'>
-              Lista dos gastos
-            </div>
+            <%= link_to p do %>
+              <div class='bnt-card'>
+                Lista dos gastos
+              </div>
+            <% end %>
           </div>
         </div>
       </div>

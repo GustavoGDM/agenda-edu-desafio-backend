@@ -1,0 +1,38 @@
+<div>
+
+  <%= @average_parliamentary_expenditures %>
+<div>
+
+<div id="parliamentarians-list" class='main'>
+  <div>
+  </div>
+  <div>
+    <%= line_chart @monthly_parliamentary_expenditures,  xmin: 1,discrete: true,xtitle: "Meses", ytitle: "Valores com data de emissão" %>
+  </div>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">datEmissao</th>
+          <th scope="col">txtFornecedor</th>
+          <th scope="col">vlrLiquido</th>
+          <th scope="col">urlDocumento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @parliamentary_expenditures.each do |pe| %>
+          <tr>
+            <% if pe.datEmissao.present? %>
+            <td> <%= pe.datEmissao.strftime('%d/%m/%Y') %> </td>
+            <%else%>
+            <td> - </td>
+            <%end%>
+            <td> <%= pe.txtFornecedor %> </td>
+            <td> <%= pe.vlrLiquido %> </td>
+            <td> <%= pe.urlDocumento %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
