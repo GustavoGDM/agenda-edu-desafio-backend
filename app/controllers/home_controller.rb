@@ -5,6 +5,6 @@ class HomeController < ApplicationController
   private
 
   def set_latest_files
-    @files = UploadFile.limit(5)
+    @files = UploadFile.limit(5).order(created_at: :desc)
   end
 end

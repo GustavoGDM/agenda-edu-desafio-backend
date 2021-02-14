@@ -1,0 +1,35 @@
+<div id="parliamentarian-card">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-img">
+        <div class="card-img-parliam">
+          <%= image_tag("http://www.camara.leg.br/internet/deputado/bandep/#{parliamentarian.ideCadastro}.jpg") %>
+        </div>
+        <div class="card-img-<%= parliamentarian.sgPartido%>"></div>
+      </div>
+      <div class="card-info">
+        <div class='card-info-name'>
+          <span>
+            <%= parliamentarian.txNomeParlamentar %>
+          </span>
+        </div>
+        <% if value.present? %>
+          <div class='card-info-spent'>
+            <span>
+              Total Gasto
+            </span>
+            <span class='card-info-spent-value' >
+              R$ 
+              <%= number_with_delimiter('%.2f' % value) %>
+            </span>
+          </div>
+          <%= link_to parliamentarian do %>
+            <div class='bnt-card'>
+              Lista dos gastos
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
