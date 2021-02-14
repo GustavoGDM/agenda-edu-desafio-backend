@@ -1,105 +1,150 @@
-$political-parties: "PT", "DEM", "PCdoB", "PSOL", "PL", "PDT", "PSD", "PSB", "SOLIDARIEDADE", "PROS", "REPUBLICANOS", "PSL", "CIDADANIA", "PP", "PSC", "MDB", "NOVO", "AVANTE";
-
-#parliamentarians-list {
+#parliamentarian-info{
   padding: 20px;
   .list-info{
-    border-bottom: 1px solid #C0C0C0;
-    padding-bottom: 10px;
-  }
-  .cards{
-    display: grid;
-    grid-template-columns: 1fr 1fr ;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 20px;
     gap: 20px;
   }
-  .card{
-    margin-top: 10px;
-    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  .info-specs-grid > .card{
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
     box-shadow: var(--shadow);
-    border: none;
-    &-info{
-      margin-top: 25px;
-      &-name{
-        text-align: center;
-        font-weight: 700;
-        font-size: 18px;
-        color: #ffffff;
-        background-color: #34afb3;
-        border-radius: 7px;
-      }
-      &-spent{
-        background-color: var(--white);
-        border-radius: 0 0 5px 5px;
-        margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .info{
+    &-specs{
+      &-grid{
         display: grid;
-        text-align: center;
-        &-value{
-          font-weight: 500;
-          font-size: 18px;
-        }
+        grid-template-rows: 1fr 1fr 1fr;
       }
     }
-    .bnt-card{
-      margin-top: 10px;
-      text-align: center;
-      background-color: var(--orange);
-      padding: 5px;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: var(--shadow);
-      color: var(--white);
-      font-weight: 500;
+    &-ranking {
+      &-position{
+        font-size: 46px;
+        font-weight: 600;
+      }
+    }
+    &-total-expenditure{
+      &-value{
+        font-size: 20px;
+        font-weight: 600
+      }
+    }
+    &-avg-expendure{
+      &-value{
+        font-size: 20px;
+        font-weight: 600
+      }
     }
   }
 
-  @each $political-party in $political-parties{
-    .card-img{
-      position: relative;
-      padding-bottom: 100%;
-      img{
-        border-radius: 3px;
-      }
-      &-parliam{
-        display: flex;
-        justify-content: center;
-        position: absolute;
-        z-index: 1;
-        height: 100%;
-        width: 100%;
-        padding: 5px;
-        border-radius: 5px;
-        background-color: var(--white);
-      }
-      &-#{$political-party}{
-        background-image: url("icons/political_party_logo/#{$political-party}");
-        background-color: var(--white);
-        border-radius: 50% ;
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: absolute;
-        bottom: -18px;
-        right: -7%;
-        z-index: 2;
-        height: 70px;
-        width: 70px;
-        box-shadow: var(--shadow);
-      }
+  .colun{
+    width: 20%;
+  }
+  label{
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+  }
+  .chart-month{
+    padding: 50px 0 ;
+    .chart{
+      padding: 30px 30px;
     }
+  }
+  .table{
+    margin-top: 40px;
   }
   
   @media screen and (min-width: 45rem) {
-    .cards{
-      grid-template-columns: 1fr 1fr 1fr ;
+    .list-info{
+      grid-template-columns: 1fr 2fr;
+    }
+
+    .info{
+      &-specs{
+        display:flex;
+        align-items: center;
+        &-grid{
+          grid-template-rows: unset;
+          grid-auto-flow: column;
+          grid-auto-rows: 200px;
+          flex: 1;
+        }
+      }
+      &-ranking {
+        &-position{
+          font-size: 50px;
+        }
+      }
+      &-total-expenditure{
+        &-value{
+          font-size: 24px;
+        }
+      }
+      &-avg-expendure{
+        &-value{
+          font-size: 24px;
+        }
+      }
     }
   }
     
   @media screen and (min-width: 64rem) {
-    .cards{
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+    .list-info{
+      grid-template-columns: 1fr 3fr;
+    }
+    .info{
+      &-specs{
+        display:flex;
+        align-items: center;
+        &-grid{
+          grid-template-rows: unset;
+          grid-auto-flow: column;
+          grid-auto-rows: 200px;
+          flex: 1;
+        }
+      }
+      &-ranking {
+        &-position{
+          font-size: 56px;
+        }
+      }
+      &-total-expenditure{
+        &-value{
+          font-size: 28px;
+        }
+      }
+      &-avg-expendure{
+        &-value{
+          font-size: 28px;
+        }
+      }
     }
   }
-
 }
 
+#total-value-expenditures{
+  position: fixed;
+  right: 10%;
+  bottom: 10%;
+  z-index: 999;
+  padding: 10px;
+  border-radius: 5px;
+  display: none;
+  background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
+  color:var(--white);
+  border: 2px solid var(--white);
+}
 
-
+#sum-value{
+  border-top: 1px solid #C0C0C0;
+  font-size: 24px;
+  font-weight: 500;
+  text-align: right;
+}

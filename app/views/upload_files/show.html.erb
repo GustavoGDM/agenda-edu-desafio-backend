@@ -1,9 +1,12 @@
 <div id="parliamentarians-list" class='main'>
-  <div class='list-info'>
-  <h2>Ranking dos gastos dos Deputados</h2>
-  <span>
-    Os Deputados foram listados segundo a ordem dos seus gastos 
-  </span>
+  <div class='list-info border-bottom'>
+    <h2>Ranking dos gastos dos Deputados</h2>
+    <span>
+      Os Deputados foram listados segundo a ordem dos seus gastos 
+    </span>
+    <span class="pt-2 d-block">
+      <%= link_to "Início", root_path %>
+    <span>
   </div>
   <div class="cards" >
     <% @parliamentarians.each do |p, value| %>
