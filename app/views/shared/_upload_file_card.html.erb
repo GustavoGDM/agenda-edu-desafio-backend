@@ -1,0 +1,17 @@
+<%= link_to file do %>
+  <div id="upload-file-card">
+    <div class="card">
+      <div class="card-body">
+        <i class="fas fa-file-csv"></i>
+        <div class="card-info">
+          <span class='card-info-title'>
+            <%= file.name %>
+          </span>
+          <span>
+            <%= file.created_at.strftime('%H:%M %d/%m/%Y') %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+<%end%>

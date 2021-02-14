@@ -1,0 +1,129 @@
+<div id="parliamentarian-info" class='main'>
+  <div class="border-bottom py-2">
+    <h2>Lista dos gastos</h2>
+    <span class="pt-1">
+      <%= link_to "Início", root_path %>
+      >
+      <%= link_to "Ranking", upload_file_path(@parliamentarian.upload_file_id) %>
+    <span>
+  </div>
+  <div class='list-info'>  
+    <div class="align-self-center">
+      <%= render partial: "shared/parliamentarian_card", locals: { parliamentarian: @parliamentarian, value: nil  } %>
+    </div>
+    <div class="info-specs">
+      <div class="info-specs-grid">
+        <div class="info-ranking card">
+          <span class="info-ranking-position">
+            <%= @ranking_parliamentary_expenditures.to_s %>º 
+          </span>
+          <span>
+            <i class="fas fa-fire"></i>
+            ranking de gastos 
+          </span>
+        </div>
+        <div class="info-total-expenditure card">
+          <span class="info-total-expenditure-value">
+            R$ <%= number_with_delimiter(@total_parliamentary_expenditures) %> 
+          </span>
+          <span>
+            <i class="fas fa-money-bill-wave"></i>
+            Valor total dos gastos
+          </span>
+        </div>
+        <div class="info-avg-expendure card">
+          <span class="info-avg-expendure-value">
+            R$ <%= number_with_delimiter(@average_parliamentary_expenditures) %> 
+          </span>
+          <span>
+            <i class="fas fa-funnel-dollar"></i>
+            Valor medio de gastos
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="chart-month">    
+    <h3>Total de despesas por mês</h3>
+    <div class="chart">
+      <%= line_chart @monthly_parliamentary_expenditures,  xmin: 1,discrete: true,xtitle: "Meses", ytitle: "Valores com data de emissão" %>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <div>
+      <h3>Lista de gastos</h3>
+      <span> Clicando diretamente sobre o <b>valor do gasto</b> é possível selecionar valores para somá-los </span>
+    </div>
+    <table class="table table-striped table-hover" >
+      <thead>
+        <tr>
+          <th scope="col" class="colun">Data de Emissao</th>
+          <th scope="col" class="colun">Valor do Gasto</th>
+          <th scope="col">Fornecedor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @parliamentary_expenditures.each do |pe| %>
+          <input class='d-none' type="checkbox" id=<%= pe.id %> value=<%= pe.vlrLiquido %> name='value-expenditures' >
+          
+            <tr >
+              <td> 
+                <% if pe.datEmissao.present? %>
+                  <%= pe.datEmissao.strftime('%d/%m/%Y') %> 
+                <% end %>
+              </td>
+
+              <% if pe == @parliamentary_expenditures.first %>
+                <td class="font-weight-bold bg-warning" data-toggle="tooltip" data-placement="top" title="Esse é o maior gasto do parlamentar">
+              <% else %>
+                <td >
+              <% end %>
+                <label for=<%= pe.id %>>
+                  R$ <%= number_with_delimiter(pe.vlrLiquido) %> 
+                </label>
+              </td>
+              
+              <td> 
+                <% if pe.urlDocumento.present? %>
+                <%= link_to pe.txtFornecedor, pe.urlDocumento%>
+                <% else %>
+                <%= pe.txtFornecedor %> 
+                <% end %>
+              </td>
+            </tr>          
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div id="total-value-expenditures">
+  <h5>Soma dos valores selecionados</h5>
+  <div id="sum-value">
+  </div>
+</div>
+
+<script>
+  $('input[name="value-expenditures"]').on('change', (e)=>{
+    let row = $(`label[for="${$(e.target).attr('id')}"]`).parents('tr')
+    if ($(e.target).prop('checked')){
+      row.addClass('table-info')
+    }else{
+      row.removeClass('table-info')
+    }
+    if($('input[name="value-expenditures"]:checked').length > 0){
+      $("#total-value-expenditures").fadeIn()
+    }else{
+      $("#total-value-expenditures").fadeOut()
+    }
+    sumValues = 0
+    $('input[name="value-expenditures"]:checked').each(( index,element)=>{ 
+      sumValues += Number($(element).val()) 
+    })
+    $('#sum-value').empty()
+    $('#sum-value').append(sumValues.toLocaleString("en", { style: "currency" , currency:"BRL"}))
+    
+
+  })
+</script>

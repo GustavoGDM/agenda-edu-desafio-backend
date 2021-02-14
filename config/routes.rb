@@ -2,4 +2,5 @@
 Rails.application.routes.draw do
   root 'home#index'
   resources :upload_files, only: [:create, :show]
+  resources :parliamentarians, only: [:show]
 end

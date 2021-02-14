@@ -1,0 +1,23 @@
+#parliamentarians-list {
+  padding: 20px;
+  .list-info{
+    padding-bottom: 10px;
+  }
+  .cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    gap: 20px;
+  }
+
+  @media screen and (min-width: 45rem) {
+    .cards{
+      grid-template-columns: 1fr 1fr 1fr ;
+    }
+  }
+    
+  @media screen and (min-width: 64rem) {
+    .cards{
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+}
