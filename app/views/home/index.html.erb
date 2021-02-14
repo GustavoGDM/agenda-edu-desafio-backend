@@ -13,16 +13,19 @@
       <% end %>
     </div>
   </div>
+  <% if(@files.any?) %>
   <div class="latest-cont">
     <div class="cards" >
       <% @files.each do |file| %>
         <%= render partial: "shared/upload_file_card", locals: { file: file} %>
       <%end%>
+      <%= link_to "Mostrar mais", upload_files_path, class:"latest-more" %>
     </div>
     <div class="latest-title">
       <h2>Últimos Uploads</h2>
     </div>
   </div>
+  <% end %>
 </div>
 
 <!-- Modal -->

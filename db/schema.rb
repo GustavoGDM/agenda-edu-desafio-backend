@@ -12,12 +12,15 @@
 
 ActiveRecord::Schema.define(version: 2021_02_12_003924) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "parliamentarians", force: :cascade do |t|
     t.string "txNomeParlamentar"
     t.string "cpf"
     t.integer "ideCadastro"
     t.string "sgPartido"
-    t.integer "upload_file_id", null: false
+    t.bigint "upload_file_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["upload_file_id"], name: "index_parliamentarians_on_upload_file_id"
@@ -27,7 +30,7 @@ ActiveRecord::Schema.define(version: 2021_02_12_003924) do
     t.date "datEmissao"
     t.string "txtFornecedor"
     t.float "vlrLiquido"
-    t.integer "parliamentarian_id", null: false
+    t.bigint "parliamentarian_id", null: false
     t.integer "ideDocumento"
     t.string "urlDocumento"
     t.datetime "created_at", precision: 6, null: false
