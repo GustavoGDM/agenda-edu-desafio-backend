@@ -13,6 +13,7 @@
       <% end %>
     </div>
   </div>
+  <% if(@files.any?) %>
   <div class="latest-cont">
     <div class="cards" >
       <% @files.each do |file| %>
@@ -24,6 +25,7 @@
       <h2>Últimos Uploads</h2>
     </div>
   </div>
+  <% end %>
 </div>
 
 <!-- Modal -->
