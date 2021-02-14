@@ -2,17 +2,25 @@ class UploadFilesController < ApplicationController
   
   before_action :file_params, only: [:create]
   before_action :set_upload_file, only: [:show]
+  before_action :set_upload_files_list, only: [:index]
   
+  def index
+  end
+
+  def show
+  end
+
   def create
+    unless file_params.key?('file')
+      return redirect_to root_path, flash: { error: 'Não foi possivel carregar o arquivo.' } 
+    end
+
     @file = UploadFile.new(name: file_params[:file].original_filename, file:file_params[:file].tempfile)
     if @file.is_valid?
       save_upload_file if @file.read_file
       return redirect_to upload_file_path(@file) unless @file.new_record?
     end
     redirect_to root_path, flash: { error: 'Não foi possivel carregar o arquivo.' } 
-  end
-
-  def show
   end
 
   private
@@ -34,6 +42,10 @@ class UploadFilesController < ApplicationController
     end
 
     @parliamentarians = @parliamentarians.sort_by { |_key, value| -value }
+  end
+  
+  def set_upload_files_list
+    @pload_files_list = UploadFile.all.order(created_at: :desc)
   end
 
   def save_upload_file 

@@ -1,0 +1,13 @@
+<div id="upload-file-list"class="main">
+  <div class='border-bottom'>
+    <h2>Lista dos arquivos</h2>
+    <span class="pt-2 d-block">
+      <%= link_to "Início", root_path %>
+    <span>
+  </div>
+  <div class="cards">
+    <% @pload_files_list.each do |file| %>
+      <%= render partial: "shared/upload_file_card", locals: { file: file} %>
+    <%end%>
+  </div>
+</div>
