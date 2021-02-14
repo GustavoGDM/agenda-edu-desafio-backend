@@ -16,21 +16,7 @@
   <div class="latest-cont">
     <div class="cards" >
       <% @files.each do |file| %>
-        <%= link_to file do %>
-          <div class="card">
-            <div class="card-body">
-              <i class="fas fa-file-csv"></i>
-              <div class="card-info">
-                <span class='card-info-title'>
-                  <%= file.name %>
-                </span>
-                <span>
-                  <%= file.created_at.strftime('%H:%M %d/%m/%Y') %>
-                </span>
-              </div>
-            </div>
-          </div>
-        <%end%>
+        <%= render partial: "shared/upload_file_card", locals: { file: file} %>
       <%end%>
     </div>
     <div class="latest-title">

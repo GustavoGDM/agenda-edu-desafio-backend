@@ -1,0 +1,21 @@
+#upload-file-card{
+  .card{
+    margin: 1rem;
+    &-body{
+      display: flex;
+      padding: 10px;
+      svg{
+        font-size: 50px;
+        color: #989898
+      }
+    }
+    &-info{
+      display: flex;
+      flex-flow: column; 
+      padding: 0 5px;
+      &-title{
+        font-weight: bold;
+      }
+    }
+  }
+}
